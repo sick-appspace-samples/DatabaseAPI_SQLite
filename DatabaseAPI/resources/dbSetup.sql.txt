@@ -1,0 +1,7 @@
+PRAGMA foreign_keys = ON;
+create table if not exists Person(Id int primary key not null
+                                 ,FirstName text
+                                 ,LastName text
+                                 ,BirthYear int
+                                 ,BirthMonth int
+                                 ,BirthDay int);

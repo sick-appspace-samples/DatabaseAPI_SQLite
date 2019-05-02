@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest>
+    <application name="DatabaseAPI">
+        <crown name="DatabaseAPI">
+            <desc>user script</desc>
+            <serves>
+                <event name="OnResult">
+                    <desc>No description yet...</desc>
+                    <param name="result" type="string" desc="No description yet..."/>
+                </event>
+                <event name="OnSqlQueryChange">
+                    <desc>No description yet...</desc>
+                    <param name="sql" type="string" desc="No description yet..."/>
+                </event>
+                <function name="insert">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="exec">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="setPersonFirstName">
+                    <desc>No description yet...</desc>
+                    <param name="firstName" type="string" desc="No description yet..."/>
+                </function>
+                <function name="setSqlQuery">
+                    <desc>No description yet...</desc>
+                    <param name="sql" type="string" desc="No description yet..."/>
+                </function>
+                <function name="setPersonLastName">
+                    <desc>No description yet...</desc>
+                    <param name="lastName" type="string" desc="No description yet..."/>
+                </function>
+                <function name="setPersonBirthYear">
+                    <desc>No description yet...</desc>
+                    <param name="birthYear" type="string" desc="No description yet..."/>
+                </function>
+                <function name="execAvgBirthYear">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="execNumOfPersons">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="execAllPersons">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="setPersonBirthMonth">
+                    <desc>No description yet...</desc>
+                    <param name="birthMonth" type="string" desc="No description yet..."/>
+                </function>
+                <function name="setPersonBirthDay">
+                    <desc>No description yet...</desc>
+                    <param name="birthDay" type="string" desc="No description yet..."/>
+                </function>
+                <function name="execClearTablePerson">
+                    <desc>No description yet...</desc>
+                </function>
+            </serves>
+        </crown>
+        <meta key="author">AppSpace Sample</meta>
+        <meta key="version">2.5.0</meta>
+        <meta key="licensed">false</meta>
+        <meta key="priority">low</meta>
+        <meta key="read-protected">false</meta>
+        <meta key="copy-protected">false</meta>
+        <entry path="pages" default="database.msdd">
+            <file type="application/zip">database.msdd</file>
+        </entry>
+        <entry path="resources">
+            <file type="text/plain">dbSetup.sql.txt</file>
+        </entry>
+        <entry path="scripts" default="database.lua">
+            <file type="text/x-lua">database.lua</file>
+        </entry>
+    </application>
+</manifest>
