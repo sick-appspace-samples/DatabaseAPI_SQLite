@@ -1,7 +1,7 @@
 ## DatabaseAPI
 Introduction to the DataBase-API.
+
 ### Description
-This sample includes a specific user interface for its application.
 The application itself creates a simple database and allows the user to insert
 data into and perform queries on it. The user interface provides text fields to 
 fill the fields of the database to insert new data and a possibility to send a query. 
@@ -19,6 +19,7 @@ To perform a predefined query, simply press the buttons in the "Query Templates"
 See the "Result" section for any output of the database.
 The UI itself is created using the UI builder. It can be found by clicking the
 "database.msdd". In the drop-down menu at the upper right "Database" can be selected.
+More information can be found in the tutorials.
 
 ### Topics
 Programming-Pattern, System, Sample, SICK-AppSpace
