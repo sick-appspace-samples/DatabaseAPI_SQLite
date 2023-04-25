@@ -1,14 +1,17 @@
 ## DatabaseAPI
+
 Introduction to the DataBase-API.
 
 ### Description
+
 The application itself creates a simple database and allows the user to insert
-data into and perform queries on it. The user interface provides text fields to 
-fill the fields of the database to insert new data and a possibility to send a query. 
+data into and perform queries on it. The user interface provides text fields to
+fill the fields of the database to insert new data and a possibility to send a query.
 It is possible to send a user-defined or a predefined query.
 The results of the insertions and queries are printed on the page.
 
 ### How to run
+
 Connect a web-browser to the AppEngine (localhost address "127.0.0.1") and you will
 see the web-page of this sample.
 Fill in the data fields in the "Input Data" section and press "INSERT" to insert data
@@ -22,4 +25,5 @@ The UI itself is created using the UI builder. It can be found by clicking the
 More information can be found in the tutorials.
 
 ### Topics
-Programming-Pattern, System, Sample, SICK-AppSpace
+
+programming-pattern, system, sample, sick-appspace
