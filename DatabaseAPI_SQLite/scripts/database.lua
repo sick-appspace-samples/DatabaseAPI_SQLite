@@ -20,80 +20,79 @@ local sqlQuery         = ""
 local nextPersonId     = 0
 
 -- Serving functions for usage in GUI
-Script.serveFunction("DatabaseAPI.setPersonFirstName",   "setPersonFirstName")
-Script.serveFunction("DatabaseAPI.setPersonLastName",    "setPersonLastName")
-Script.serveFunction("DatabaseAPI.setPersonBirthYear",   "setPersonBirthYear")
-Script.serveFunction("DatabaseAPI.setPersonBirthMonth",  "setPersonBirthMonth")
-Script.serveFunction("DatabaseAPI.setPersonBirthDay",    "setPersonBirthDay")
-Script.serveFunction("DatabaseAPI.setSqlQuery",          "setSqlQuery")
-Script.serveFunction("DatabaseAPI.getSqlQuery",          "getSqlQuery")
-Script.serveFunction("DatabaseAPI.insert",               "insert")
-Script.serveFunction("DatabaseAPI.exec",                 "exec")
-Script.serveFunction("DatabaseAPI.execAllPersons",       "execAllPersons")
-Script.serveFunction("DatabaseAPI.execAvgBirthYear",     "execAvgBirthYear")
-Script.serveFunction("DatabaseAPI.execNumOfPersons",     "execNumOfPersons")
-Script.serveFunction("DatabaseAPI.execClearTablePerson", "execClearTablePerson")
+Script.serveFunction("DatabaseAPI_SQLite.setPersonFirstName",   "setPersonFirstName")
+Script.serveFunction("DatabaseAPI_SQLite.setPersonLastName",    "setPersonLastName")
+Script.serveFunction("DatabaseAPI_SQLite.setPersonBirthYear",   "setPersonBirthYear")
+Script.serveFunction("DatabaseAPI_SQLite.setPersonBirthMonth",  "setPersonBirthMonth")
+Script.serveFunction("DatabaseAPI_SQLite.setPersonBirthDay",    "setPersonBirthDay")
+Script.serveFunction("DatabaseAPI_SQLite.setSqlQuery",          "setSqlQuery")
+Script.serveFunction("DatabaseAPI_SQLite.getSqlQuery",          "getSqlQuery")
+Script.serveFunction("DatabaseAPI_SQLite.insert",               "insert")
+Script.serveFunction("DatabaseAPI_SQLite.exec",                 "exec")
+Script.serveFunction("DatabaseAPI_SQLite.execAllPersons",       "execAllPersons")
+Script.serveFunction("DatabaseAPI_SQLite.execAvgBirthYear",     "execAvgBirthYear")
+Script.serveFunction("DatabaseAPI_SQLite.execNumOfPersons",     "execNumOfPersons")
+Script.serveFunction("DatabaseAPI_SQLite.execClearTablePerson", "execClearTablePerson")
 
 -- Serving events
 local localOnResultEventName     = "OnResult"
 local localOnSqlChangeEventName  = "OnSqlChange"
-Script.serveEvent("DatabaseAPI.OnResult", localOnResultEventName)
-Script.serveEvent("DatabaseAPI.OnSqlQueryChange", localOnSqlChangeEventName)
+Script.serveEvent("DatabaseAPI_SQLite.OnResult", localOnResultEventName)
+Script.serveEvent("DatabaseAPI_SQLite.OnSqlQueryChange", localOnSqlChangeEventName)
 
 --End of Global Scope-----------------------------------------------------------
 
 --Start of Function and Event Scope---------------------------------------------
 
---@printResult(text:String)
---triggers result-event
+---triggers result-event
+---@param text String
 local function printResult(text)
   Script.notifyEvent(localOnResultEventName, text)
 end
 
---@updateSql(sql:text)
---sets global sqlQuery and triggers sql-changed event
+---sets global sqlQuery and triggers sql-changed event
+---@param sql String
 function updateSql(sql)
   sqlQuery = sql
   Script.notifyEvent(localOnSqlChangeEventName, sqlQuery)
 end
 
---@setPersonFirstName(firstName:String)
+---@param firstName String
 function setPersonFirstName(firstName)
   personFirstName = firstName
 end
 
---@setPersonLastName(lastName:String)
+---@param lastName String
 function setPersonLastName(lastName)
   personLastName = lastName
 end
 
---@setPersonBirthYear(birthYear:String)
+---@param birthYear String
 function setPersonBirthYear(birthYear)
   personBirthYear = birthYear
 end
 
---@setPersonBirthMonth(birthMonth:String)
+---@param birthMonth String
 function setPersonBirthMonth(birthMonth)
   personBirthMonth = birthMonth
 end
 
---@setPersonBirthDay(birthDay:String)
+---@param birthDay String
 function setPersonBirthDay(birthDay)
   personBirthDay = birthDay
 end
 
---@setSqlQuery(query:String)
+---@param query String
 function setSqlQuery(query)
   sqlQuery = query
 end
 
---@getSqlQuery():String
+---@return String sqlQuery
 function getSqlQuery()
   return sqlQuery
 end
 
---@insert()
---inserts dataset into the database
+---inserts dataset into the database
 function insert()
   if (insertStmt ~= nil) then
     insertStmt:bind(0, nextPersonId, {personFirstName, personLastName}, {personBirthYear, personBirthMonth, personBirthDay})
@@ -109,8 +108,8 @@ function insert()
   end
 end
 
---@exec()
---executes query
+
+---executes query
 function exec()
   if (db ~= nil) then
     local tempStmt = db:prepare(sqlQuery)
@@ -135,32 +134,28 @@ function exec()
   end
 end
 
---@execAllPersons()
 function execAllPersons()
   updateSql("select * from Person")
-  DatabaseAPI.exec()
+  DatabaseAPI_SQLite.exec()
 end
 
---@execAvgBirthYear()
 function execAvgBirthYear()
   updateSql("select avg(BirthYear) from Person")
-  DatabaseAPI.exec()
+  DatabaseAPI_SQLite.exec()
 end
 
---@execNumOfPersons()
 function execNumOfPersons()
   updateSql("select count(*) from Person")
-  DatabaseAPI.exec()
+  DatabaseAPI_SQLite.exec()
 end
 
---@execClearTablePerson()
 function execClearTablePerson()
   updateSql("delete from Person")
-  DatabaseAPI.exec()
+  DatabaseAPI_SQLite.exec()
 end
 
---@setupDb(bd:handle)
---executes initializing of database as stored in the setup-file
+---executes initializing of database as stored in the setup-file
+---@param bd handle
 local function setupDb(db)
   local f = File.open(dbSetupFileName, "rb")
   if f ~= nil then
@@ -175,7 +170,6 @@ local function setupDb(db)
   end
 end
 
---@main()
 local function main()
   db = Database.SQL.SQLite.create()
   db:openFile(dbFileName, "READ_WRITE_CREATE")
@@ -195,7 +189,7 @@ local function main()
   end
 end
 --The following registration is part of the global scope which runs once after startup
---Registration of the 'main' function to the 'Engine.OnStarted' event 
+--Registration of the 'main' function to the 'Engine.OnStarted' event
 Script.register("Engine.OnStarted", main)
 
 --End of Function and Event Scope---------------------------------------------

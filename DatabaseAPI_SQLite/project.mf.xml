@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest>
+    <application name="DatabaseAPI_SQLite">
+        <crown name="DatabaseAPI_SQLite">
+            <desc>user script</desc>
+            <serves>
+                <event name="OnResult">
+                    <desc>No description yet...</desc>
+                    <param desc="No description yet..." name="result" type="string"/>
+                </event>
+                <event name="OnSqlQueryChange">
+                    <desc>No description yet...</desc>
+                    <param desc="No description yet..." name="sql" type="string"/>
+                </event>
+                <function name="insert">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="exec">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="setPersonFirstName">
+                    <desc>No description yet...</desc>
+                    <param desc="No description yet..." name="firstName" type="string"/>
+                </function>
+                <function name="setSqlQuery">
+                    <desc>No description yet...</desc>
+                    <param desc="No description yet..." name="sql" type="string"/>
+                </function>
+                <function name="setPersonLastName">
+                    <desc>No description yet...</desc>
+                    <param desc="No description yet..." name="lastName" type="string"/>
+                </function>
+                <function name="setPersonBirthYear">
+                    <desc>No description yet...</desc>
+                    <param desc="No description yet..." name="birthYear" type="string"/>
+                </function>
+                <function name="execAvgBirthYear">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="execNumOfPersons">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="execAllPersons">
+                    <desc>No description yet...</desc>
+                </function>
+                <function name="setPersonBirthMonth">
+                    <desc>No description yet...</desc>
+                    <param desc="No description yet..." name="birthMonth" type="string"/>
+                </function>
+                <function name="setPersonBirthDay">
+                    <desc>No description yet...</desc>
+                    <param desc="No description yet..." name="birthDay" type="string"/>
+                </function>
+                <function name="execClearTablePerson">
+                    <desc>No description yet...</desc>
+                </function>
+            </serves>
+        </crown>
+        <meta key="author">AppSpace Sample</meta>
+        <meta key="version">2.5.0</meta>
+        <meta key="priority">low</meta>
+        <meta key="read-protected">false</meta>
+        <meta key="copy-protected">false</meta>
+        <entry default="database.lua" path="scripts"/>
+    </application>
+</manifest>

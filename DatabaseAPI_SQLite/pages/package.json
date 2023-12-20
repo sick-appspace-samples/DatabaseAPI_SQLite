@@ -1,5 +1,5 @@
 {
-  "name": "DatabaseAPI",
+  "name": "DatabaseAPI_SQLite",
   "version": "1.0.0",
   "description": "Generated",
   "components": [
